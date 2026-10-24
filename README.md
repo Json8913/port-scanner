@@ -21,6 +21,11 @@ For a private lab host:
 
     python3 port_scanner.py 192.168.1.20 --ports 1-256 --timeout 0.4 --delay 0.02
 
+## Smoke checks
+
+- Scanned 127.0.0.1 ports 1-32.
+- Confirmed a public address is rejected before a connection is attempted.
+
 ## Current limits
 
 This is a basic TCP connect scan. It does not identify software versions, perform UDP scanning, or guarantee that a closed or filtered port can be distinguished. The service label comes from the machine’s local service-name database.
