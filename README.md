@@ -34,6 +34,8 @@ This is a basic TCP connect scan. It does not identify software versions, perfor
 
 The prototype uses explicit scope checks and bounded port ranges. Next steps include clearer timeout reporting, structured output, and documenting results from an authorised local lab.
 
-## Screenshots
+## Demo screenshot
 
-Add a redacted terminal screenshot after running the tool in your own lab.
+![Loopback port scanner demo](screenshots/port-scanner-demo.png)
+
+This run scanned five ports on 127.0.0.1 while a temporary local HTTP service listened on port 8765.
