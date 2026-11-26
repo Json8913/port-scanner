@@ -2,6 +2,8 @@
 
 A small Python TCP connect scanner for **loopback and private lab IP addresses**. It reports ports that accepted a connection and maps common port numbers to the local service-name database.
 
+**Author:** Jason Santos Ritchie
+
 **Stage:** Prototype with human-readable and JSON output.
 
 ## Scope and safety
