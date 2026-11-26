@@ -2,7 +2,7 @@
 
 A small Python TCP connect scanner for **loopback and private lab IP addresses**. It reports ports that accepted a connection and maps common port numbers to the local service-name database.
 
-**Stage:** Initial prototype.
+**Stage:** Prototype with human-readable and JSON output.
 
 ## Scope and safety
 
@@ -21,6 +21,12 @@ For a private lab host:
 
     python3 port_scanner.py 192.168.1.20 --ports 1-256 --timeout 0.4 --delay 0.02
 
+Add `--json` to print a structured report that can be saved or piped into another local tool:
+
+    python3 port_scanner.py 127.0.0.1 --ports 1-1024 --json
+
+The JSON report includes the target, number of ports scanned, and open ports with their protocol and service label.
+
 ## Smoke checks
 
 - Scanned 127.0.0.1 ports 1-32.
@@ -32,7 +38,7 @@ This is a basic TCP connect scan. It does not identify software versions, perfor
 
 ## Lessons and next steps
 
-The prototype uses explicit scope checks and bounded port ranges. Next steps include clearer timeout reporting, structured output, and documenting results from an authorised local lab.
+The scanner keeps its scope explicit and port ranges bounded. Structured output makes local result handling easier; next steps include clearer timeout reporting and documenting results from an authorised local lab.
 
 ## Demo screenshot
 
