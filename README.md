@@ -15,6 +15,14 @@ The tool accepts IP addresses only, rejects public addresses, and limits each ru
 - Python 3.10 or newer
 - No third-party packages
 
+## Desktop interface
+
+Run the desktop app with:
+
+    python3 gui.py
+
+Enter a loopback or private IP and a bounded port range. The interface applies the same 4,096-port limit as the command-line scanner.
+
 ## Usage
 
     python3 port_scanner.py 127.0.0.1 --ports 1-1024
