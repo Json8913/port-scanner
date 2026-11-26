@@ -1,5 +1,7 @@
 # Port Scanner
 
+[![Checks](https://github.com/Json8913/port-scanner/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/Json8913/port-scanner/actions/workflows/checks.yml)
+
 A small Python TCP connect scanner for **loopback and private lab IP addresses**. It reports ports that accepted a connection and maps common port numbers to the local service-name database.
 
 **Author:** Jason Santos Ritchie
