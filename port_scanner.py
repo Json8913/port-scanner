@@ -3,6 +3,7 @@
 
 import argparse
 import ipaddress
+import json
 import socket
 import time
 
@@ -26,6 +27,8 @@ def main() -> None:
     parser.add_argument("--ports", type=parse_ports, default=parse_ports("1-1024"))
     parser.add_argument("--timeout", type=float, default=0.35)
     parser.add_argument("--delay", type=float, default=0.01)
+    parser.add_argument("--json", action="store_true",
+                        help="print open ports as a JSON report")
     args = parser.parse_args()
 
     try:
@@ -37,7 +40,10 @@ def main() -> None:
     if args.timeout <= 0 or args.delay < 0:
         parser.error("timeout must be positive and delay cannot be negative")
 
-    print(f"Scanning {address} across {len(args.ports)} TCP ports")
+    open_ports = []
+    if not args.json:
+        print(f"Scanning {address} across {len(args.ports)} TCP ports")
+
     for port in args.ports:
         try:
             with socket.create_connection((str(address), port), timeout=args.timeout):
@@ -45,11 +51,20 @@ def main() -> None:
                     service = socket.getservbyport(port, "tcp")
                 except OSError:
                     service = "unknown"
-                print(f"{port}/tcp open ({service})")
+                open_ports.append({"port": port, "protocol": "tcp", "service": service})
+                if not args.json:
+                    print(f"{port}/tcp open ({service})")
         except (TimeoutError, ConnectionRefusedError, OSError):
             pass
         if args.delay:
             time.sleep(args.delay)
+
+    if args.json:
+        print(json.dumps({
+            "target": str(address),
+            "ports_scanned": len(args.ports),
+            "open_ports": open_ports,
+        }, indent=2))
 
 
 if __name__ == "__main__":
